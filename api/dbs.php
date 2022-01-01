@@ -1,5 +1,4 @@
 <?php
-    include_once './api/helpers/index.php';
     class DBsModal{
       
         // database connection and table name

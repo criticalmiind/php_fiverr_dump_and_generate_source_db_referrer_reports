@@ -1,4 +1,24 @@
 <?php
+	class DumpDatabase {
+		private $host = "localhost";
+		private $db_name = "fiverr_referers";
+		private $username = "root";
+		private $password = "";
+		public $conn;
+	
+		// get the database connection
+		public function getConnection(){
+			$this->conn = null;
+			try{
+				$this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+				$this->conn->exec("set names utf8");
+			}catch(PDOException $exception){
+				echo json_encode([ "data"=>array(), "message"=>"Connection error: ".$exception->getMessage(), "success"=>false ]);
+			}
+			return $this->conn;
+		}
+	}
+	
 	class SourceDatabase {
 	    private $host = "";
 	    private $db_name = "";
@@ -42,25 +62,5 @@
             }
 			return count($r_arr) > 0;
 		}
-	}
-
-	class DumpDatabase {
-	    private $host = "localhost";
-	    private $db_name = "fiverr_referers";
-	    private $username = "root";
-	    private $password = "";
-	    public $conn;
-	  
-	    // get the database connection
-	    public function getConnection(){
-	        $this->conn = null;
-	        try{
-	            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-	            $this->conn->exec("set names utf8");
-	        }catch(PDOException $exception){
-	            echo json_encode([ "data"=>array(), "message"=>"Connection error: ".$exception->getMessage(), "success"=>false ]);
-	        }
-	        return $this->conn;
-	    }
 	}
 ?>
