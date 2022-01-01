@@ -1,0 +1,35 @@
+MySQL Code:
+
+-- ---------------------------------
+-- table name is: xx_sites
+-- ---------------------------------
+
+CREATE TABLE IF NOT EXISTS `xx_sites`(
+    `site_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `site_name` VARCHAR(40) NOT NULL,
+    `analytics_view_id` VARCHAR(10) NOT NULL UNIQUE,
+    `analytics_json_file_name` VARCHAR(40) NOT NULL,
+    `analytics_site_url` VARCHAR(40) NOT NULL,
+    `live_fetch` INT(1) NOT NULL,
+    `is_public` INT(1) NOT NULL,
+    `added` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `analytics_last_fetched` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(`site_id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8 AUTO_INCREMENT = 59465;
+-- ---------------------------------
+-- ---------------------------------
+-- table name is: livecount_track
+-- ---------------------------------
+
+CREATE TABLE IF NOT EXISTS `livecount_track`(
+    `txn_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `site_id` INT(11) NOT NULL,
+    `viewcount` VARCHAR(8) NOT NULL,
+    `added` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(`txn_id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8 AUTO_INCREMENT = 6969;
+-- ---------------------------------
+
+
+http://localhost/1_test/analyticsapi/ajax.php?action=users&site=59465
+http://localhost/1_test/analyticsapi/ajax.php?action=users&site=SITEID -- To Fetch Realtime
