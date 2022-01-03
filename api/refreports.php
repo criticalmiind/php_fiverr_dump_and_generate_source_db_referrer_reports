@@ -11,7 +11,7 @@
         }
 
         public function create($obj=array()) {
-            $query = "INSERT INTO `".$this->table_name."` (`report_id`, `user_id`, `mainUser`, `tier`, `status`) ";
+            $query = "INSERT INTO `".$this->table_name."` (`report_id`, `user_id`, `name`, `tier`, `status`) ";
             $query .= "VALUES (NULL, '".$obj->user_id."', '".$obj->uname."', '".$obj->tier."', '0')";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -30,7 +30,7 @@
         }
 
         public function get_list_by_status($status=0) {
-            $query = "SELECT * FROM `".$this->table_name."` WHERE `status`=".$status;
+            $query = "SELECT * FROM `".$this->table_name."` WHERE `status`='".$status."'";
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -41,7 +41,7 @@
                 $rep=array(
                     "report_id" => $report_id,
                     "user_id" => $user_id,
-                    "mainUser" => $mainUser,
+                    "name" => $name,
                     "tier" => $tier,
                     "status" => $status,
                 );
@@ -62,7 +62,7 @@
                 $rep=array(
                     "report_id" => $report_id,
                     "user_id" => $user_id,
-                    "mainUser" => $mainUser,
+                    "name" => $name,
                     "tier" => $tier,
                     "status" => $status,
                 );
@@ -72,7 +72,7 @@
         }
 
         public function get_list_by_user_id($id=0) {
-            $query = "SELECT * FROM `".$this->table_name."` WHERE `user_id`=".$id;
+            $query = "SELECT * FROM `".$this->table_name."` WHERE `user_id`='".$id."'";
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -83,7 +83,7 @@
                 $rep=array(
                     "report_id" => $report_id,
                     "user_id" => $user_id,
-                    "mainUser" => $mainUser,
+                    "name" => $name,
                     "tier" => $tier,
                     "status" => $status,
                 );

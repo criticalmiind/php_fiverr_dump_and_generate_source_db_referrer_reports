@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 01, 2022 at 07:20 AM
+-- Generation Time: Jan 03, 2022 at 07:51 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.23
 
@@ -44,7 +44,7 @@ CREATE TABLE `dbs` (
 --
 
 INSERT INTO `dbs` (`id`, `host`, `db`, `uname`, `pwd`, `sid`, `pid`, `ref`, `table`) VALUES
-(7, 'localhost', 'fiverr_referers', 'root', '', 'id', 'uname', 'referrer', 'users');
+(9, 'localhost', 'spiderincome', 'root', '', 'u_name', 'u_name', 'referrer', 'a_users');
 
 -- --------------------------------------------------------
 
@@ -54,18 +54,19 @@ INSERT INTO `dbs` (`id`, `host`, `db`, `uname`, `pwd`, `sid`, `pid`, `ref`, `tab
 
 CREATE TABLE `refreports` (
   `report_id` int(5) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `mainUser` varchar(10) DEFAULT NULL,
-  `tier` int(2) NOT NULL,
-  `status` int(1) NOT NULL
+  `user_id` varchar(40) NOT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `tier` varchar(40) NOT NULL,
+  `status` varchar(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `refreports`
 --
 
-INSERT INTO `refreports` (`report_id`, `user_id`, `mainUser`, `tier`, `status`) VALUES
-(9, 2701, 'user', 5, 2);
+INSERT INTO `refreports` (`report_id`, `user_id`, `name`, `tier`, `status`) VALUES
+(14, 'aaaaa', 'aaaaa', '5', '2'),
+(15, '000', '000', '5', '2');
 
 -- --------------------------------------------------------
 
@@ -87,38 +88,36 @@ CREATE TABLE `report_txns` (
 --
 
 INSERT INTO `report_txns` (`txn_id`, `report_id`, `user_id`, `public_id`, `referrer`, `tier`) VALUES
-(561, 9, '2701', 'user', '0', 0),
-(562, 9, '2702', 'user', '2701', 1),
-(563, 9, '2703', 'user', '2701', 1),
-(564, 9, '2804', 'user', '2701', 1),
-(565, 9, '2806', 'user', '2701', 1),
-(566, 9, '2807', 'user', '2701', 1),
-(567, 9, '2706', 'user', '2702', 2),
-(568, 9, '2712', 'user', '2702', 2),
-(569, 9, '2714', 'user', '2702', 2),
-(570, 9, '2707', 'user', '2703', 2),
-(571, 9, '2708', 'user', '2703', 2),
-(572, 9, '2808', 'user', '2804', 2),
-(573, 9, '2809', 'user', '2804', 2),
-(574, 9, '2810', 'user', '2804', 2),
-(593, 9, '2729', 'user', '2706', 3),
-(594, 9, '2745', 'user', '2706', 3),
-(595, 9, '2747', 'user', '2706', 3),
-(596, 9, '2751', 'user', '2706', 3),
-(597, 9, '2754', 'user', '2706', 3),
-(598, 9, '2759', 'user', '2714', 3),
-(599, 9, '2760', 'user', '2714', 3),
-(600, 9, '2761', 'user', '2714', 3),
-(601, 9, '2762', 'user', '2714', 3),
-(602, 9, '2763', 'user', '2714', 3),
-(603, 9, '2764', 'user', '2714', 3),
-(604, 9, '2765', 'user', '2714', 3),
-(605, 9, '2766', 'user', '2714', 3),
-(606, 9, '2767', 'user', '2714', 3),
-(607, 9, '2768', 'user', '2714', 3),
-(608, 9, '2811', 'user', '2809', 3),
-(609, 9, '2812', 'user', '2809', 3),
-(610, 9, '2732', 'user', '2729', 4);
+(657, 14, 'aaaaa', 'aaaaa', '', 0),
+(658, 14, 'bbbbb', 'bbbbb', 'aaaaa', 1),
+(659, 14, 'ccccc', 'ccccc', 'aaaaa', 1),
+(660, 14, 'ddddd', 'ddddd', 'bbbbb', 2),
+(661, 14, 'eeeee', 'eeeee', 'bbbbb', 2),
+(662, 14, 'fffff', 'fffff', 'ccccc', 2),
+(663, 14, 'ggggg', 'ggggg', 'ccccc', 2),
+(664, 14, 'hhhhh', 'hhhhh', 'ddddd', 3),
+(665, 14, 'iiiii', 'iiiii', 'fffff', 3),
+(666, 14, 'jjjjj', 'jjjjj', 'hhhhh', 4),
+(667, 14, 'kkkkk', 'kkkkk', 'hhhhh', 4),
+(668, 14, 'lllll', 'lllll', 'iiiii', 4),
+(669, 14, 'mmmmm', 'mmmmm', 'kkkkk', 5),
+(670, 14, 'nnnnn', 'nnnnn', 'lllll', 5),
+(671, 14, 'ooooo', 'ooooo', 'lllll', 5),
+(672, 15, '000', '000', '', 0),
+(673, 15, 'bbbbb', 'bbbbb', '000', 1),
+(674, 15, 'ccccc', 'ccccc', '000', 1),
+(675, 15, 'ddddd', 'ddddd', 'bbbbb', 2),
+(676, 15, 'eeeee', 'eeeee', 'bbbbb', 2),
+(677, 15, 'fffff', 'fffff', 'ccccc', 2),
+(678, 15, 'ggggg', 'ggggg', 'ccccc', 2),
+(679, 15, 'hhhhh', 'hhhhh', 'ddddd', 3),
+(680, 15, 'iiiii', 'iiiii', 'fffff', 3),
+(681, 15, 'jjjjj', 'jjjjj', 'hhhhh', 4),
+(682, 15, 'kkkkk', 'kkkkk', 'hhhhh', 4),
+(683, 15, 'lllll', 'lllll', 'iiiii', 4),
+(684, 15, 'mmmmm', 'mmmmm', 'kkkkk', 5),
+(685, 15, 'nnnnn', 'nnnnn', 'lllll', 5),
+(686, 15, 'ooooo', 'ooooo', 'lllll', 5);
 
 -- --------------------------------------------------------
 
@@ -292,19 +291,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dbs`
 --
 ALTER TABLE `dbs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `refreports`
 --
 ALTER TABLE `refreports`
-  MODIFY `report_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `report_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `report_txns`
 --
 ALTER TABLE `report_txns`
-  MODIFY `txn_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=611;
+  MODIFY `txn_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=687;
 
 --
 -- AUTO_INCREMENT for table `users`

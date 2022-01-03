@@ -8,9 +8,9 @@
 	if(isset($_POST['id']) && isset($_POST['tier'])){
 		extract($_POST);
 		$ref_usrs = $ref_report->get_list_by_user_id($id);
-		if(count($ref_usrs) > 0){
-			echo "<script>alert('This user already have records in referrer reports please delete old records first!')</script>";
-		}else{
+		// if(count($ref_usrs) > 0){
+		// 	echo "<script>alert('This user already have records in referrer reports please delete old records first!')</script>";
+		// }else{
 			$usr = $users->get_user_by_id($id);
 			if(count($usr) > 0){
 				$usr = $usr[0];
@@ -23,7 +23,7 @@
 			}else{
 				echo "<script>alert('This user id not found in source db!')</script>";
 			}
-		}
+		// }
 	}
 
 	if(isset($_POST['delete'])){
@@ -103,7 +103,7 @@
 							echo "<tr>
 								<td>".$r['report_id']."</td>
 								<td>".$r['user_id']."</td>
-								<td>".$r['mainUser']."</td>
+								<td>".$r['name']."</td>
 								<td>".$r['tier']."</td>
 								<td>".$s."</td>
 							</tr>";

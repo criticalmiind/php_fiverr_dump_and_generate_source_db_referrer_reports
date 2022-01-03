@@ -18,7 +18,7 @@
         }
 
         function check_table(){
-            $query = "SELECT * FROM ".$this->table_name;
+            $query = "SELECT * FROM `".$this->table_name."`";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             $num = $stmt->rowCount();
@@ -26,7 +26,7 @@
         }
 
         function get_records(){
-            $query = "SELECT * FROM ".$this->table_name;
+            $query = "SELECT * FROM `".$this->table_name."`";
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -49,9 +49,9 @@
         }
 
         function get_user_by_id($id){
-            if(!$id) return (object)array();
 
-            $query = "SELECT * FROM " . $this->table_name . " WHERE `" . $this->id . "`=" . $id;
+            $query = "SELECT * FROM `" . $this->table_name . "` WHERE `" . $this->id . "`='" . $id ."'";
+
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             $num = $stmt->rowCount();
@@ -73,9 +73,8 @@
         }
 
         function get_users_by_referrer($referrer){
-            if(!$referrer) return (object)array();
 
-            $query = "SELECT * FROM " . $this->table_name . " WHERE `" . $this->referrer . "`=" . $referrer;
+            $query = "SELECT * FROM `" . $this->table_name . "` WHERE `" . $this->referrer . "`='" . $referrer . "'";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             $num = $stmt->rowCount();

@@ -18,7 +18,7 @@
         }
 
         public function delete_by_report_id($report_id) {
-            $query = "DELETE FROM `".$this->table_name."` WHERE `report_id`=".$report_id;
+            $query = "DELETE FROM `".$this->table_name."` WHERE `report_id`='".$report_id."'";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
         }
@@ -30,7 +30,7 @@
         }
 
         public function get_report_by_id($id=0) {
-            $query = "SELECT * FROM `".$this->table_name."` WHERE `report_id`=".$id;
+            $query = "SELECT * FROM `".$this->table_name."` WHERE `report_id`='".$id."'";
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -52,7 +52,7 @@
         }
 
         public function get_process_report_last_index($id=0) {
-            $query = "SELECT * FROM `".$this->table_name."` WHERE `report_id`=".$id." ORDER BY tier DESC";
+            $query = "SELECT * FROM `".$this->table_name."` WHERE `report_id`='".$id."' ORDER BY tier DESC";
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();

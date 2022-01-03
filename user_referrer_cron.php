@@ -50,7 +50,6 @@
     if($processing_state_tier == '0'){
         // create first user as a trnx report parent user
         // passing tier zero (becoz tree parent node)
-        echo "first query ==== ".$processing_state_tier."<br><br>";
         $obj = (object) array(
             "report_id" => $pending_task['report_id'],
             "user_id" => $usr['id'],
@@ -64,7 +63,13 @@
     // get pending task refs
     // if no ref found in list, then die cron here
     $u = $users->get_users_by_referrer($pending_task['user_id']);
-    if(count($u) < 1) die();
+
+    if(count($u) < 1){
+        // update task state from process (1) to completed (2)
+        // if there is no child available
+        $ref_report->update_status($pending_task['report_id'], 2);
+        die();
+    }
 
     function create_txns_report($list=[]) {
         // accessing global variables
